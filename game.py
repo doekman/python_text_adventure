@@ -1,9 +1,11 @@
+# all the stuff the user if holding onto.
 inventory = {}
+
 
 def answerQuestion(question, options):
 	wronganswer = True
 	while wronganswer:
-		answer = input(question + " (" + ",".join(options) + ")")
+		answer = input(question + " (" + ",".join(options) + ") ")
 		wronganswer = False; # wishful thinking....
 		if answer.upper() in options:
 			return answer.upper()
@@ -13,6 +15,15 @@ def answerQuestion(question, options):
 
 def intro():
 	print("This is the introduction of the game....")
+
+def gameover():
+	print("GAME OVER!")
+	again = answerQuestion("Would you like to play again?", ["Y","N"])
+	if again == "N":
+		exit()
+	inventory = {}
+	intro()
+	room0()
 
 def room1():
 	print("This is room 1, it is north of the town square. The only option from here is south (S).");
@@ -45,15 +56,15 @@ def offerChicken():
 	ans = answerQuestion("Do you offer your chicken to the old lady?", ("Y","N"))
 	if ans == "Y":
 		print("She takes your chicken and opens the door. YOU WIN!")
-		exit()
+		gameover()
 	else:
 		print("She stabs you and takes your chicken. YOU DIE.")
-		exit()
+		gameover()
 
 def room4():
-	print("THere is a steep cliff here. You decide to look over it. You lean right out.")
+	print("There is a steep cliff here. You decide to look over it. You lean right out.")
 	print("You fall. You die.")
-	exit();
+	gameover();
 
 def room3():
 	print("There is a golden door. An old lady stands next to it. A sign says 'entry price one chicken.'")
