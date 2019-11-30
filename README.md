@@ -9,3 +9,4 @@ Het demonstreert:
 - controleren of er iets in de inventaris staat (dus het kan niet opnieuw worden toegevoegd)
 - opties hebben die alleen mogelijk zijn of verschillende uitkomsten hebben, afhankelijk van wat er in de inventaris staat.
 - verschillende eindes
+- dat het visueel erg handig is om vragen te onderscheiden van andere zinnen (het teken `>` voor de vraag)

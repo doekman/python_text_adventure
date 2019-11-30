@@ -5,7 +5,7 @@ inventaris = {}
 def beantwoordVraag(vraag, opties):
 	foutantwoord = True
 	while foutantwoord:
-		antwoord = input(vraag + " (" + ",".join(opties) + ") ")
+		antwoord = input("> " + vraag + " (" + ",".join(opties) + ") ")
 		foutantwoord = False; # hopelijk gaat het goed....
 		if antwoord.upper() in opties:
 			return antwoord.upper()
@@ -27,12 +27,12 @@ def spelvoorbij():
 	kamer0()
 
 def kamer1():
-	print("Dit is kamer room 1, het is ten noorden van het stadsplein. Je kunt hier alleen naar het zuiden (Z)).");
-	antwoord = beantwoordVraag("Which way do you want to go?", ("Z"))
+	print("Dit is kamer 1, het is ten noorden van het stadsplein. Je kunt hier alleen naar het zuiden (Z)).");
+	antwoord = beantwoordVraag("Welke kant wil je op?", ("Z"))
 	if antwoord == "Z":
 		kamer0()
 	else:
-		print("Zit antwoord is niet mogelijk.... hoe ben je hier überhaupt gekomen?")
+		print("Dit antwoord is niet mogelijk.... hoe ben je hier überhaupt gekomen?")
 
 def kindBiedtKipAan():
 	print("Er is een kind dat je een kip aanbiedt. Wil je de kip hebben?");
@@ -54,7 +54,7 @@ def kamer2():
 	kamer0()
 
 def biedKipAan():
-	antwoord = beantwoordVraag("Biedt je je kip aan de oude dame aan??", ("J","N"))
+	antwoord = beantwoordVraag("Bied je je kip aan de oude dame aan??", ("J","N"))
 	if antwoord == "J":
 		print("Ze neemt je kip en opent de deur. JE WINT!")
 		spelvoorbij()
