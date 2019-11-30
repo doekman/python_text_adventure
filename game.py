@@ -1,4 +1,4 @@
-# all the stuff the user if holding onto.
+# alle spullen die de speler bij zich heeft
 inventaris = {}
 
 
@@ -6,19 +6,19 @@ def beantwoordVraag(vraag, opties):
 	foutantwoord = True
 	while foutantwoord:
 		antwoord = input(vraag + " (" + ",".join(opties) + ") ")
-		foutantwoord = False; # wishful thinking....
+		foutantwoord = False; # hopelijk gaat het goed....
 		if antwoord.upper() in opties:
 			return antwoord.upper()
 		else:
-			print ("hint: answer must be one of " + ",".join(opties) + ", try opnieuw.")
-			foutantwoord = True; # Foiled!
+			print ("hint: het antwoord moet één van " + ",".join(opties) + " zijn, probeer opnieuw.")
+			foutantwoord = True; # toch niet!
 
 def intro():
-	print("This is the introduction of the game....")
+	print("Dit is de introductie van het spel....")
 
 def spelvoorbij():
-	print("GAME OVER!")
-	opnieuw = beantwoordVraag("Would you like to play again?", ["Y","N"])
+	print("SPEL VOORBIJ!")
+	opnieuw = beantwoordVraag("Zou je opnieuw willen spelen?", ["J","N"])
 	if opnieuw == "N":
 		exit()
 	inventaris = {}
@@ -26,67 +26,67 @@ def spelvoorbij():
 	kamer0()
 
 def kamer1():
-	print("This is room 1, it is north of the town square. The only option from here is south (S).");
-	antwoord = beantwoordVraag("Which way do you want to go?", ("S"))
-	if antwoord == "S":
+	print("Dit is kamer room 1, het is ten noorden van het stadsplein. Je kunt hier alleen naar het zuiden (Z)).");
+	antwoord = beantwoordVraag("Which way do you want to go?", ("Z"))
+	if antwoord == "Z":
 		kamer0()
 	else:
-		print("This is not a possible answer.... how did you get here?")
+		print("Zit antwoord is niet mogelijk.... hoe ben je hier überhaupt gekomen?")
 
 def kindBiedtKipAan():
-	print("There is a kid trying to give you a chicken. Do you want the chicken?");
-	antwoord = beantwoordVraag("Take chicken?", ("Y","N"))
-	if antwoord == "Y":
-		print("You took the chicken.");
-		if not "chicken" in inventaris:
-			inventaris["chicken"] = 0
-		inventaris["chicken"] += 1
-		print ("You have " + str(inventaris["chicken"]) + " chickens.")
+	print("Er is een kind dat je een kip aanbiedt. Wil je de kip hebben?");
+	antwoord = beantwoordVraag("Neem de kip?", ("J","N"))
+	if antwoord == "J":
+		print("Je hebt de kip aangenomen.");
+		if not "kippen" in inventaris:
+			inventaris["kippen"] = 0
+		inventaris["kippen"] += 1
+		print ("Je hebt " + str(inventaris["kippen"]) + " kippen.")
 	else:
-		print("You did not take the chicken")
+		print("Je hebt de kip niet genomen")
 
 def kamer2():
-	print("This is room 2, it is south of the town square.")
-	if not "chicken" in inventaris:
+	print("Dit is kamer 2, het is ten zuiden van het stadsplein.")
+	if not "kippen" in inventaris:
 		kindBiedtKipAan()
-	print("You decide to head north again...")
+	print("Je besluit naar het noorden te gaan...")
 	kamer0()
 
 def biedKipAan():
-	antwoord = beantwoordVraag("Do you offer your chicken to the old lady?", ("Y","N"))
-	if antwoord == "Y":
-		print("She takes your chicken and opens the door. YOU WIN!")
+	antwoord = beantwoordVraag("Biedt je je kip aan de oude dame aan??", ("J","N"))
+	if antwoord == "J":
+		print("Ze neemt je kip en opent de deur. JE WINT!")
 		spelvoorbij()
 	else:
-		print("She stabs you and takes your chicken. YOU DIE.")
+		print("Ze steekt je en neemt je kip. JE STERFT.")
 		spelvoorbij()
 
 def kamer4():
-	print("There is a steep cliff here. You decide to look over it. You lean right out.")
-	print("You fall. You die.")
+	print("Er is hier een steil klif. Je besluit over de rand te kijken. Je leunt er een beetje over.")
+	print("Je valt. Je sterft.")
 	spelvoorbij();
 
 def kamer3():
-	print("There is a golden door. An old lady stands next to it. A sign says 'entry price one chicken.'")
-	if not "chicken" in inventaris:
-		print("It is a pity you do not have a chicken.")
-		print("You return to the west.")
+	print("Er is een gouden deur. Een oude dame staat ernaast. Op een bord staat 'entree één kip'.")
+	if not "kippen" in inventaris:
+		print("Het is jammer dat je geen kip hebt.")
+		print("Je keert terug naar het westen.")
 		kamer0()
 	else:
 		biedKipAan()
 
 def kamer0():
-	print("You are standing in a town square. Pathways lead to the north (N), south (S), east (E) and west (W).")
-	antwoord = beantwoordVraag("Which way do you want to go?", ("N","S","E","W"))
+	print("Je staat op een dorpsplein. Paden leiden naar het noorden (N), zuiden (Z), oost (O) en west (W).")
+	antwoord = beantwoordVraag("Welke kant wil je op?", ("N","Z","O","W"))
 	if antwoord == "N":
 		kamer1()
-	elif antwoord == "S":
+	elif antwoord == "Z":
 		kamer2()
-	elif antwoord == "E":
+	elif antwoord == "O":
 		kamer3()
 	elif antwoord == "W":
 		kamer4()
 
-# here is the starting point of the game...
+# dit is het startpunt van het spel...
 intro()
 kamer0()
