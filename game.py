@@ -1,92 +1,92 @@
 # all the stuff the user if holding onto.
-inventory = {}
+inventaris = {}
 
 
-def answerQuestion(question, options):
-	wronganswer = True
-	while wronganswer:
-		answer = input(question + " (" + ",".join(options) + ") ")
-		wronganswer = False; # wishful thinking....
-		if answer.upper() in options:
-			return answer.upper()
+def beantwoordVraag(vraag, opties):
+	foutantwoord = True
+	while foutantwoord:
+		antwoord = input(vraag + " (" + ",".join(opties) + ") ")
+		foutantwoord = False; # wishful thinking....
+		if antwoord.upper() in opties:
+			return antwoord.upper()
 		else:
-			print ("hint: answer must be one of " + ",".join(options) + ", try again.")
-			wronganswer = True; # Foiled!
+			print ("hint: answer must be one of " + ",".join(opties) + ", try opnieuw.")
+			foutantwoord = True; # Foiled!
 
 def intro():
 	print("This is the introduction of the game....")
 
-def gameover():
+def spelvoorbij():
 	print("GAME OVER!")
-	again = answerQuestion("Would you like to play again?", ["Y","N"])
-	if again == "N":
+	opnieuw = beantwoordVraag("Would you like to play again?", ["Y","N"])
+	if opnieuw == "N":
 		exit()
-	inventory = {}
+	inventaris = {}
 	intro()
-	room0()
+	kamer0()
 
-def room1():
+def kamer1():
 	print("This is room 1, it is north of the town square. The only option from here is south (S).");
-	ans = answerQuestion("Which way do you want to go?", ("S"))
-	if ans == "S":
-		room0()
+	antwoord = beantwoordVraag("Which way do you want to go?", ("S"))
+	if antwoord == "S":
+		kamer0()
 	else:
 		print("This is not a possible answer.... how did you get here?")
 
-def kidOffersChicken():
+def kindBiedtKipAan():
 	print("There is a kid trying to give you a chicken. Do you want the chicken?");
-	ans = answerQuestion("Take chicken?", ("Y","N"))
-	if ans == "Y":
+	antwoord = beantwoordVraag("Take chicken?", ("Y","N"))
+	if antwoord == "Y":
 		print("You took the chicken.");
-		if not "chicken" in inventory:
-			inventory["chicken"] = 0
-		inventory["chicken"] += 1
-		print ("You have " + str(inventory["chicken"]) + " chickens.")
+		if not "chicken" in inventaris:
+			inventaris["chicken"] = 0
+		inventaris["chicken"] += 1
+		print ("You have " + str(inventaris["chicken"]) + " chickens.")
 	else:
 		print("You did not take the chicken")
 
-def room2():
+def kamer2():
 	print("This is room 2, it is south of the town square.")
-	if not "chicken" in inventory:
-		kidOffersChicken()
+	if not "chicken" in inventaris:
+		kindBiedtKipAan()
 	print("You decide to head north again...")
-	room0()
+	kamer0()
 
-def offerChicken():
-	ans = answerQuestion("Do you offer your chicken to the old lady?", ("Y","N"))
-	if ans == "Y":
+def biedKipAan():
+	antwoord = beantwoordVraag("Do you offer your chicken to the old lady?", ("Y","N"))
+	if antwoord == "Y":
 		print("She takes your chicken and opens the door. YOU WIN!")
-		gameover()
+		spelvoorbij()
 	else:
 		print("She stabs you and takes your chicken. YOU DIE.")
-		gameover()
+		spelvoorbij()
 
-def room4():
+def kamer4():
 	print("There is a steep cliff here. You decide to look over it. You lean right out.")
 	print("You fall. You die.")
-	gameover();
+	spelvoorbij();
 
-def room3():
+def kamer3():
 	print("There is a golden door. An old lady stands next to it. A sign says 'entry price one chicken.'")
-	if not "chicken" in inventory:
+	if not "chicken" in inventaris:
 		print("It is a pity you do not have a chicken.")
 		print("You return to the west.")
-		room0()
+		kamer0()
 	else:
-		offerChicken()
+		biedKipAan()
 
-def room0():
+def kamer0():
 	print("You are standing in a town square. Pathways lead to the north (N), south (S), east (E) and west (W).")
-	ans = answerQuestion("Which way do you want to go?", ("N","S","E","W"))
-	if ans == "N":
-		room1()
-	elif ans == "S":
-		room2()
-	elif ans == "E":
-		room3()
-	elif ans == "W":
-		room4()
+	antwoord = beantwoordVraag("Which way do you want to go?", ("N","S","E","W"))
+	if antwoord == "N":
+		kamer1()
+	elif antwoord == "S":
+		kamer2()
+	elif antwoord == "E":
+		kamer3()
+	elif antwoord == "W":
+		kamer4()
 
 # here is the starting point of the game...
 intro()
-room0()
+kamer0()
