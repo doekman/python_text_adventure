@@ -1,13 +1,11 @@
-# python_text_adventure
-The most minimal text adventure game I can make (part of a tutorial)
+# python_tekst_avontuur
+Het meest minimale tekst-avonturenspel dat ik kan maken (onderdeel van een zelfstudie)
 
-Demonstrates:
+Het demonstreert:
 
-- using a function called `answerQuestion` to limit the accepted input.
-- choosing a different next step depending on the answer to a question.
-- adding something to the inventory
-- checking if something is in the inventory (so it can't be added again)
-- having options that are only possible or have different outcomes depending on what is in the inventory.
-- different endings
-
-
+- gebruik van een functie genaamd `beantwoordVraag` om de geaccepteerde invoer te beperken.
+- een andere volgende stap kiezen, afhankelijk van het antwoord op een vraag.
+- iets toevoegen aan de inventaris
+- controleren of er iets in de inventaris staat (dus het kan niet opnieuw worden toegevoegd)
+- opties hebben die alleen mogelijk zijn of verschillende uitkomsten hebben, afhankelijk van wat er in de inventaris staat.
+- verschillende eindes
