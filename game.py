@@ -17,6 +17,7 @@ def intro():
 	print("This is the introduction of the game....")
 
 def gameover():
+	global inventory
 	print("GAME OVER!")
 	again = answerQuestion("Would you like to play again?", ["Y","N"])
 	if again == "N":
