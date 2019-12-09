@@ -17,7 +17,7 @@ def intro():
 	print("Dit is de introductie van het spel....")
 
 def spelvoorbij():
-	global inventory
+	global inventaris
 	print("SPEL VOORBIJ!")
 	opnieuw = beantwoordVraag("Zou je opnieuw willen spelen?", ["J","N"])
 	if opnieuw == "N":
