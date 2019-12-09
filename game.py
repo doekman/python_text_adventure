@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # alle spullen die de speler bij zich heeft
 inventaris = {}
 
@@ -76,9 +78,49 @@ def kamer3():
 	else:
 		biedKipAan()
 
+def kamer5():
+	print("Dit is kamer 5, het is ten noorden-Westen van het stadsplein. Je kunt hier alleen naar het zuiden (Z), Ooosten(O)).");
+	antwoord = beantwoordVraag("Welke kant wil je op?", ("Z","O"))
+	if antwoord == "Z": 
+		kamer4()
+	elif antwoord=="O":
+		kamer1()
+	else:
+		print("Dit antwoord is niet mogelijk.... hoe ben je hier überhaupt gekomen?")
+
+def biedKipOfHaanAan():
+	antwoord = beantwoordVraag("Je kunt hier een kip (K), een haan (H) of niets (N) kopen. Wat wil je kopen", ("K", "H", "N"))
+	if antwoord == "K":
+		print("Je hebt een kip aangenomen")
+		if not "kippen" in inventaris:
+			inventaris["kippen"] = 0
+		inventaris ["kippen"] += 1
+	elif antwoord == "H":
+		print("je hebt een hanen aangenomen")
+		if not "haan" in inventaris:
+			inventaris ["hanen"] = 0
+		inventaris ["hanen"] += 1
+	else:
+		print("u koopt niets")
+
+def kamer6():
+	print("Dit is kamer 6, het is ten noord-Oosten van het stadsplein.")
+	biedKipOfHaanAan()
+	print ("je besluit naar het zuiden te gaan")
+	kamer2()
+	
+def kamer7():
+	print("Dit is kamer 7, het is een geheime locatie. Door de vraag te beantwoorden kan je door.")
+	antwoord = beantwoordVraag("Waar begon je bij dit spel?", ("D","S"))
+	if antwoord == "D": 
+		kamer2()
+	elif antwoord=="S":
+		kamer4()
+
+
 def kamer0():
-	print("Je staat op een dorpsplein. Paden leiden naar het noorden (N), zuiden (Z), oost (O) en west (W).")
-	antwoord = beantwoordVraag("Welke kant wil je op?", ("N","Z","O","W"))
+	print("Je staat op een dorpsplein. Paden leiden naar het noorden (N), zuiden (Z), oost (O) en west (W), Noord-West (NW), Noord-Oost (NO), Zuid-Oosten.")
+	antwoord = beantwoordVraag("Welke kant wil je op?", ("N","Z","O","W","NW","NO","ZO"))
 	if antwoord == "N":
 		kamer1()
 	elif antwoord == "Z":
@@ -87,6 +129,12 @@ def kamer0():
 		kamer3()
 	elif antwoord == "W":
 		kamer4()
+	elif antwoord== "NW":
+		kamer5()
+	elif antwoord == "NO":
+		kamer6()
+	elif antwoord == "ZO":
+		kamer7()
 
 # dit is het startpunt van het spel...
 intro()
